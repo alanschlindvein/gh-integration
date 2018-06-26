@@ -3,7 +3,7 @@ import { object } from 'prop-types';
 
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
-import { createGenerateClassName } from '@material-ui/core/styles';
+import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import {
 	MuiThemeProvider,
 	createMuiTheme,
@@ -14,6 +14,12 @@ import GHApp from './GHApp';
 
 import styles from './styles';
 
+const jss = create({
+  plugins: [...jssPreset().plugins]
+});
+
+const generateClassName = createGenerateClassName();
+
 class App extends Component {
 
 	static propTypes = {
@@ -23,9 +29,6 @@ class App extends Component {
 
 	render() {
 		const {classes} = this.props;
-		 
-		const jss = create();
-		const generateClassName = createGenerateClassName();
 
    	return (
    		<JssProvider jss={jss} generateClassName={generateClassName}>

@@ -1,3 +1,6 @@
 export default {
-  container: {}
+  container: {
+    display: 'flex',
+    alignItems: 'center'
+  }
 }

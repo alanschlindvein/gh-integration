@@ -2,7 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 
 /* types */
 const GET_REPOS = 'repos/GET_REPOS';
-const GET_REPOS_SUCCESS = 'repos/GET_REPOS_SUCCESS';
+const UDPATE_REPO_LIST = 'repos/GET_REPOS_SUCCESS';
 const CLEAR_REPOS = 'repos/CLEAR_REPOS' ;
 
 export const types = {
@@ -12,10 +12,16 @@ export const types = {
 };
 
 /* actions */
-const GET_REPOS = createAction(GET_REPOS);
-const UDPATE_REPO_LIST = createAction(GET_REPOS_SUCCESS);
+const getRepos = createAction(GET_REPOS);
+const updateReposList = createAction(UDPATE_REPO_LIST);
 
-const CLEAR_REPOS = createAction(CLEAR_REPOS);
+const clearRepos = createAction(CLEAR_REPOS);
+
+export const actions = {
+  getRepos,
+  updateReposList,
+  clearRepos
+};
 
 /* handler */
 const initialState = {
@@ -27,4 +33,4 @@ export default handleActions({
     repos: payload
   }),
   [CLEAR_REPOS]: () => initialState
-});
+}, initialState);
