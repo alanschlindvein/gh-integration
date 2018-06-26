@@ -4,6 +4,8 @@ import { object, func } from 'prop-types';
 import List from '@material-ui/core/List';
 import { withStyles } from '@material-ui/core/styles';
 
+import RepoItem from './components/RepoItem';
+
 import styles from './styles';
 
 class RepoList extends PureComponent {
@@ -17,12 +19,14 @@ class RepoList extends PureComponent {
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, repos} = this.props;
 
     return (
       <div className={classes.container}>
         <List>
-
+          {repos.items.map(item => (
+            <RepoItem key={item.id} {...item} />
+          ))}
         </List>
       </div>
     );

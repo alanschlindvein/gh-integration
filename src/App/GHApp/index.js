@@ -28,25 +28,45 @@ class GHApp extends PureComponent {
     classes: object.isRequired
   };
 
-  handlePageChange = () => {};
+  state = {
+    user: '',
+    page: 1
+  };
+
+  handlePageChange = page => {
+    const {user} = this.state;
+    this.props.getRepos({user, page});
+  };
+
+  handleUserSearch = user => {
+    if(!!user) {
+      this.props.getRepos({user, page: 1});
+      this.props.getUser(user);
+    }
+    this.setState({user, page: 1});
+  };
 
   render() {
-    const {
-      classes,
-      getUser,
-      getRepos,
-      clearRepos,
-      repos
-    } = this.props;
+    const {classes, repos} = this.props;
 
     return (
       <div className={classes.container}>
         <Header
-          getRepos={getRepos}
-          clearRepos={clearRepos}
-          getUser={getUser}
+          onSearch={this.handleUserSearch}
         />
-        <RepoList repos={repos} onPageChange={this.handlePageChange}/>
+        <div className={classes.content}>
+          <RepoList 
+            repos={repos}
+            onPageChange={this.handlePageChange}
+          />
+          {repos.numberOfPages > 1 && 
+            <Pagination 
+              page={this.state.page}
+              total={repos.numberOfPages}
+              onPageChange={this.handlePageChange}
+            />
+          }
+        </div>
       </div>
     );
   }
