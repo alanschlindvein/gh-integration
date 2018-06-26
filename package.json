@@ -2,7 +2,7 @@
   "name": "gh-integration",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/gh-integration",
+  "homepage": "https://alanschlindvein.github.io/gh-integration",
   "dependencies": {
     "@material-ui/core": "^1.2.3",
     "@material-ui/icons": "^1.1.0",
