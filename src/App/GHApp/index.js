@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Header from './components/Header';
 import RepoList from './components/RepoList';
+import Pagination from './components/Pagination';
 import { actions as reposActions } from 'commons/reducers/repos';
 import { actions as userActions } from 'commons/reducers/user';
 
@@ -24,6 +25,7 @@ class GHApp extends PureComponent {
     user: object.isRequired,
     /* user actions */
     getUser: func.isRequired,
+    clearUser: func.isRequired,
     /* material-ui styles */
     classes: object.isRequired
   };
@@ -35,15 +37,19 @@ class GHApp extends PureComponent {
 
   handlePageChange = page => {
     const {user} = this.state;
+    this.setState({page});
     this.props.getRepos({user, page});
   };
 
   handleUserSearch = user => {
+    this.setState({user, page: 1});
     if(!!user) {
       this.props.getRepos({user, page: 1});
       this.props.getUser(user);
+      return;
     }
-    this.setState({user, page: 1});
+    this.props.clearRepos();
+    this.props.clearUser();
   };
 
   render() {
@@ -63,7 +69,7 @@ class GHApp extends PureComponent {
             <Pagination 
               page={this.state.page}
               total={repos.numberOfPages}
-              onPageChange={this.handlePageChange}
+              onChange={this.handlePageChange}
             />
           }
         </div>

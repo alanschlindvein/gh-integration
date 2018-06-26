@@ -8,10 +8,13 @@ const responseInterceptor = () => {
       const {data} = response;
 
       if(!!link) {
-        const parsedPage = pageParser.parser(link);
+        const {last, prev} = pageParser.parser(link);
+
+        const numberOfPages = +(!last ? +prev + 1 : last);
+        
         return {
           ...response,
-          data: {numberOfPages: +parsedPage.last, items: data}
+          data: {numberOfPages, items: data}
         };
       }
       return response;

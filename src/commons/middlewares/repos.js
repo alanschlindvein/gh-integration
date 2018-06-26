@@ -1,4 +1,4 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 
 import api from './api';
 import service from 'commons/services/repos';
@@ -9,7 +9,9 @@ function* getRepos({payload}) {
     service.getRepos,
     payload,
     actions.updateReposList,
-    err => console.log(err)
+    function* (err) {
+      yield put(actions.clearRepos());
+    }
   );
 }
 

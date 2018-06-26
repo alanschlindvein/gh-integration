@@ -22,7 +22,12 @@ class Header extends PureComponent {
 
   handleSearch = () => this.props.onSearch(this.state.user);
 
-  handleChange = e => this.setState({user: e.target.value});
+  handleChange = e => {
+    const user = e.target.value;
+
+    this.setState({user});
+    !user && this.props.onSearch();
+  }
 
   handleKeyPress = e => {
     const user = e.target.value.trim();
