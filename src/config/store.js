@@ -1,8 +1,6 @@
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
 
-import history from './history';
 import rootSaga from 'commons/middlewares';
 import rootReducer from 'commons/reducers';
 
@@ -12,13 +10,12 @@ const configureStore = (initialState={}) => {
   const composeEnhancers = windowExtensionCompose || compose;
 
   const middlewareForSaga = createSagaMiddleware();
-  const middlewareForRouter = routerMiddleware(history);
 
   const store = createStore(
     rootReducer,
     initialState,
     composeEnhancers(
-      applyMiddleware(middlewareForSaga, middlewareForRouter)
+      applyMiddleware(middlewareForSaga)
     )
   );
 
@@ -31,7 +28,7 @@ const configureStore = (initialState={}) => {
 
   middlewareForSaga.run(rootSaga);
 
-  return {store, history};
+  return store;
 };
 
 export default configureStore;

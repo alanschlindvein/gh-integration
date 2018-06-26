@@ -10,6 +10,8 @@ import {
 	withStyles
 } from '@material-ui/core/styles';
 
+import GHApp from './GHApp';
+
 import styles from './styles';
 
 class App extends Component {
@@ -20,20 +22,20 @@ class App extends Component {
 	};
 
 	render() {
-   	const {classes} = this.props;
+		const {classes} = this.props;
+		 
+		const jss = create();
+		const generateClassName = createGenerateClassName();
 
    	return (
-   		<JssProvider
-      		jss={create()}
-      		generateClassName={createGenerateClassName()}
-      	>
-      		<MuiThemeProvider theme={createMuiTheme()}>
-         		<div className={classes.container}>
-         			app
-         		</div>
-      		</MuiThemeProvider>
+   		<JssProvider jss={jss} generateClassName={generateClassName}>
+      	<MuiThemeProvider theme={createMuiTheme()}>
+        	<div className={classes.container}>
+         		<GHApp />
+         	</div>
+      	</MuiThemeProvider>
    		</JssProvider>
-    	);
+    );
 	}
 }
 
