@@ -1,10 +1,10 @@
-# [gh-integration](https://alanschlindvein.github.io/gh-integration/build/index.html)
+# [gh-integration](https://alanschlindvein.github.io/gh-integration/)
 
 Web app desenvolvida em [React](https://facebook.github.io/react/), integrando-se com a
 [API do Github](https://developer.github.com/v3/),
 para consultar livros e visualizar mais detallhes sobre o mesmo.
 
-[Cliquei aqui para acessa-lo](https://alanschlindvein.github.io/gh-integration/build/index.html)
+[Cliquei aqui para acessa-lo](https://alanschlindvein.github.io/gh-integration/)
 
 Clonar ou baixar o projeto do Github.
 ```
