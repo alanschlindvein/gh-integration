@@ -6,11 +6,13 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 import configureStore from './config/store';
+import interceptor from './commons/interceptor';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 
 injectTapEventPlugin();
+interceptor();
 
 const store = configureStore();
    

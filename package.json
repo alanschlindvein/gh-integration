@@ -7,6 +7,8 @@
     "@material-ui/core": "^1.2.3",
     "@material-ui/icons": "^1.1.0",
     "axios": "^0.18.0",
+    "gh-pages": "1.2.0",
+    "github-pagination": "^0.1.0",
     "prop-type": "^0.0.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -16,8 +18,7 @@
     "react-tap-event-plugin": "^3.0.3",
     "redux": "^4.0.0",
     "redux-actions": "^2.4.0",
-    "redux-saga": "^0.16.0",
-    "gh-pages": "1.2.0"
+    "redux-saga": "^0.16.0"
   },
   "scripts": {
     "predeploy": "rm -rf node_modules/gh-pages/.cache && npm run build",

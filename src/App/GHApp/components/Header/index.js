@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,13 +12,18 @@ class Header extends PureComponent {
   static propTypes = {
     /* own actions */
     getRepos: func.isRequired,
-    clearRepos: func.isRequired
+    clearRepos: func.isRequired,
+    getUser: func.isRequired,
+    /* material-ui styles */
+    classes: object.isRequired
   };
 
   handleSearch = user => {
-    console.log(user);
-    //!!text && this.props.searchRepos({text, page: 0});
-    //this.props.clearRepos();
+    if(!!user) {
+      this.props.getRepos({user, page: 1});
+      this.props.getUser(user);
+    }
+    this.props.clearRepos();
   };
 
   render() {
