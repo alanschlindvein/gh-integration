@@ -18,14 +18,14 @@ class Profile extends PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if(!!nextProps.user.annotation) {
+    if(prevState.annotation == null && !!nextProps.user.annotation) {
       return {annotation: nextProps.user.annotation};
     }
-    return {annotation: prevState.annotation};
+    return null;
   };
 
   state = {
-    annotation: ''
+    annotation: null
   };
 
   handleAnnotationSave = () => {
@@ -53,7 +53,7 @@ class Profile extends PureComponent {
             fullWidth
             id="annotation"
             label="Anotações"
-            value={this.state.annotation}
+            value={this.state.annotation || ''}
             onChange={this.handleAnnotationChange}
             onBlur={this.handleAnnotationSave}
             margin="normal"
