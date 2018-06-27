@@ -1,4 +1,5 @@
 import React from 'react';
+import { object, string, number } from 'prop-types';
 
 import CallSplit from '@material-ui/icons/CallSplit';
 import Star from '@material-ui/icons/Star';
@@ -23,7 +24,17 @@ function RepoItem({classes, name, description, forks, stargazers_count}) {
             </div>
          </div>
       </Paper>
-   )
+   );
 }
+
+RepoItem.propTypes = {
+  /* own props */
+  name: string.isRequired,
+  description: string,
+  forks: number.isRequired,
+  stargazers_count: number.isRequired,
+  /* material-ui styles */
+  classes: object.isRequired
+};
 
 export default withStyles(styles)(RepoItem);
