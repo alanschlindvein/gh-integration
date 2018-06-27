@@ -46,13 +46,12 @@ class GHApp extends PureComponent {
 
   handleUserSearch = user => {
     this.setState({user, page: 1});
+    this.props.clearRepos();
+    this.props.clearUser();
     if(!!user) {
       this.props.getRepos({user, page: 1});
       this.props.getUser(user);
-      return;
     }
-    this.props.clearRepos();
-    this.props.clearUser();
   };
 
   handleAnnotationSave = annotation =>
