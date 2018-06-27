@@ -44,7 +44,7 @@ export const actions = {
 };
 
 /* handler */
-const initialState = {
+export const initialState = {
   notFoundUser: false,
   profile: {}
 };

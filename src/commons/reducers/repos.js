@@ -24,15 +24,14 @@ export const actions = {
 };
 
 /* handler */
-const initialState = {
+export const initialState = {
   numberOfPages: 1,
   items: []
 };
 
 export default handleActions({
   [UDPATE_REPO_LIST]: (state, {payload}) => {
-    const {numberOfPages=1, items} = payload;
-    
+    const {numberOfPages=1, items} = payload;    
     return {numberOfPages, items: payload.items ? items : payload};
   },
   [CLEAR_REPOS]: () => initialState

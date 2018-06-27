@@ -14,6 +14,7 @@ export default {
   },
   info: {
     display: 'flex',
+    flex: '1',
     flexDirection: 'column',
     margin: '0 1em'
   },
