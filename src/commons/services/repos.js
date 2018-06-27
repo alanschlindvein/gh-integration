@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GH_API_URL, PAGE_SIZE } from 'commons/contants';
+import { GH_API_URL, PAGE_SIZE } from 'commons/constants';
 
 export default {
   getRepos: ({user, page=0}) => axios.get(

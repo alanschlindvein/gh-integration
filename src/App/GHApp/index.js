@@ -9,6 +9,7 @@ import Header from './components/Header';
 import RepoList from './components/RepoList';
 import Pagination from './components/Pagination';
 import NotFound from './components/NotFound';
+import Profile from './components/Profile';
 import { actions as reposActions } from 'commons/reducers/repos';
 import { actions as userActions } from 'commons/reducers/user';
 
@@ -27,6 +28,7 @@ class GHApp extends PureComponent {
     /* user actions */
     getUser: func.isRequired,
     clearUser: func.isRequired,
+    saveUserAnnotation: func.isRequired,
     /* material-ui styles */
     classes: object.isRequired
   };
@@ -53,24 +55,37 @@ class GHApp extends PureComponent {
     this.props.clearUser();
   };
 
-  renderUserReposContent = repos => (
-    <Fragment>
-      <RepoList 
-        repos={repos}
-        onPageChange={this.handlePageChange}
-      />
-      {repos.numberOfPages > 1 && 
-        <Pagination 
-          page={this.state.page}
-          total={repos.numberOfPages}
-          onChange={this.handlePageChange}
+  handleAnnotationSave = annotation =>
+    this.props.saveUserAnnotation(annotation);
+
+  renderUserReposContent = () => {
+    const {repos, user: {profile={}}} = this.props;
+
+    return (
+      <Fragment>
+        {!!profile.id &&
+          <Profile
+            user={profile}
+            onSaveAnnotation={this.handleAnnotationSave}
+          />
+        }
+        <RepoList
+          repos={repos}
+          onPageChange={this.handlePageChange}
         />
-      }
-    </Fragment>
-  );
+        {repos.numberOfPages > 1 && 
+          <Pagination 
+            page={this.state.page}
+            total={repos.numberOfPages}
+            onChange={this.handlePageChange}
+          />
+        }
+      </Fragment>
+    );
+  }
 
   render() {
-    const {classes, user, repos} = this.props;
+    const {classes, user} = this.props;
 
     return (
       <div className={classes.container}>
@@ -78,7 +93,7 @@ class GHApp extends PureComponent {
         <div className={classes.content}>
           {user.notFoundUser
             ? <NotFound />
-            : this.renderUserReposContent(repos)
+            : this.renderUserReposContent()
           }
         </div>
       </div>
