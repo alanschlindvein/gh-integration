@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { object, func } from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './components/Header';
 import RepoList from './components/RepoList';
 import Pagination from './components/Pagination';
+import NotFound from './components/NotFound';
 import { actions as reposActions } from 'commons/reducers/repos';
 import { actions as userActions } from 'commons/reducers/user';
 
@@ -52,25 +53,32 @@ class GHApp extends PureComponent {
     this.props.clearUser();
   };
 
+  renderUserReposContent = repos => (
+    <Fragment>
+      <RepoList 
+        repos={repos}
+        onPageChange={this.handlePageChange}
+      />
+      {repos.numberOfPages > 1 && 
+        <Pagination 
+          page={this.state.page}
+          total={repos.numberOfPages}
+          onChange={this.handlePageChange}
+        />
+      }
+    </Fragment>
+  );
+
   render() {
-    const {classes, repos} = this.props;
+    const {classes, user, repos} = this.props;
 
     return (
       <div className={classes.container}>
-        <Header
-          onSearch={this.handleUserSearch}
-        />
+        <Header onSearch={this.handleUserSearch} />
         <div className={classes.content}>
-          <RepoList 
-            repos={repos}
-            onPageChange={this.handlePageChange}
-          />
-          {repos.numberOfPages > 1 && 
-            <Pagination 
-              page={this.state.page}
-              total={repos.numberOfPages}
-              onChange={this.handlePageChange}
-            />
+          {user.notFoundUser
+            ? <NotFound />
+            : this.renderUserReposContent(repos)
           }
         </div>
       </div>

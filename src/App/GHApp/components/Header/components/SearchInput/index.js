@@ -44,7 +44,7 @@ class Header extends PureComponent {
           autoComplete="off"
           className={classes.textField}
           id="user"
-          placeholder="Buscar"
+          placeholder="Buscar por usuário"
           value={this.state.user}
           onKeyDown={this.handleKeyPress}
           onChange={this.handleChange}
