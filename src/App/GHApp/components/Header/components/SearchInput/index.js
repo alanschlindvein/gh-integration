@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles';
 
-class Header extends PureComponent {
+class SearchInput extends PureComponent {
 
   static propTypes = {
     /* own actions */
@@ -61,4 +61,4 @@ class Header extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(SearchInput);
