@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import styles from './styles';
 
-function RepoItem({classes, name, description, forks, stargazers_count}) {
+export function RepoItem({classes, name, description, forks, stargazers_count}) {
    return (
       <Paper className={classes.container}>
          <h2 className={classes.name}>{name}</h2>

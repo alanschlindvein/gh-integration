@@ -68,10 +68,7 @@ class GHApp extends PureComponent {
             onSaveAnnotation={this.handleAnnotationSave}
           />
         }
-        <RepoList
-          repos={repos}
-          onPageChange={this.handlePageChange}
-        />
+        <RepoList repos={repos} />
         {repos.numberOfPages > 1 && 
           <Pagination 
             page={this.state.page}

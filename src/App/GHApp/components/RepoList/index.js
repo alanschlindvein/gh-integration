@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { object, func } from 'prop-types';
+import { object } from 'prop-types';
 
 import List from '@material-ui/core/List';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,6 @@ class RepoList extends PureComponent {
   static propTypes = {
     /* own props */
     repos: object.isRequired,
-    onPageChange: func.isRequired,
     /* material-ui styles */
     classes: object.isRequired
   };
